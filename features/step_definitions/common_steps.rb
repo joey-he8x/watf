@@ -11,7 +11,7 @@ end
 
 
 Then /^应该提示<(.+)>$/ do |msg|
-  rs = @b.source =~ /#{msg}/
+  rs = @page.include? msg
   rs.should be
 end
 

@@ -7,20 +7,20 @@ module Pages
     end
 
     def name_input
-      @b.jquery('input[name=name]')
+      @b.text_field(:name =>'name')
     end
 
     def password_input
-      @b.jquery('input[name=password]:visible')
+      @b.text_field(:name => 'password', :class => "login_input")
     end
 
     def login_btn
-      @b.jquery("img[src='/images/login2.gif']").parent.a
+      @b.image(:src => "/images/login2.gif")
     end
 
     def login username,password
-      name_input.set 'value',username
-      password_input.set 'value',password
+      name_input.set username
+      password_input.set password
       login_btn.click
     end
   end

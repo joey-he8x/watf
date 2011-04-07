@@ -11,12 +11,16 @@ module Pages
     end
 
     def is_login?
-      @b.jquery("#logout:visible").exists?
+      @b.span(:id =>"logout").exists? and @b.span(:id =>"logout").visible? 
     end
 
     def logout
       #@browser.jquery("#logout a").click if is_login?
-      @b.open "www.yihaodian.com/passport/logoff.do"
+      @b.goto "www.yihaodian.com/passport/logoff.do"
+    end
+
+    def include? msg
+      @b.text.include? msg
     end
 
     def check 
@@ -25,11 +29,15 @@ module Pages
     end
 
     def open
-      @b.open @url
+      @b.goto @url
     end
 
     def clear_cookie
       @b.cookie.all.delete
+    end
+
+    def validate_province_btn
+      @b.link(:id => 'validate')
     end
   end
 end

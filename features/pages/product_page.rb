@@ -7,15 +7,23 @@ module Pages
     end
 
     def open pid
-     @b.open @url + pid
+     @b.goto @url + pid
     end
 
     def amount_input
-      @b.jquery("input[name='product_amount']")
+      @b.text_field(:name => "product_amount")
     end
 
     def buy_btn
-      @b.jquery(".input_shopcart")
+      @b.button(:class => "input_shopcart")
+    end
+
+    def add_to_cart pid,amount
+      open pid
+      amount_input.set amount
+      buy_btn.click
+      validate_province_btn.click if validate_province_btn.exists? and validate_province_btn.visible?
+
     end
 
    

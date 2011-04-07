@@ -7,7 +7,7 @@ module Pages
     end
 
     def check_product pid
-      span = @b.jquery("div.productname a[href*=#{pid}]")
+      span = @b.link(:xpath,"//div[@class='productname']/span/a[contains(@href,'#{pid}')]")
       span.exists?
     end
 
