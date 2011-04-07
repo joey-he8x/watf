@@ -7,9 +7,16 @@ module Pages
     end
 
     def open pid
-     @b.open @url + pid 
+     @b.open @url + pid
     end
 
+    def amount_input
+      @b.jquery("input[name='product_amount']")
+    end
+
+    def buy_btn
+      @b.jquery(".input_shopcart")
+    end
 
    
   end
