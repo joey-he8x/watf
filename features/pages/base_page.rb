@@ -36,6 +36,10 @@ module Pages
       @b.cookie.all.delete
     end
 
+    def curr_province
+      @b.div(:id,"currProvince").text
+    end
+
     def validate_province_btn
       @b.link(:id => 'validate')
     end
