@@ -1,9 +1,7 @@
 require 'cucumber/formatter/unicode'
-require 'lib/watf'
-#["java", "lib/webspec/web_spec"].concat(Dir["lib/webspec/jar/*.jar"]).concat(Dir["lib/module/**/*"]).each { |file| require file }
-#WebSpec.extra_careful_pause_until_ready false
 
 require 'yaml'
+require "#{File.dirname(__FILE__)}/site"
 site=YAML.load_file 'features/pages/site.yaml'
 require "rubygems"
 require "watir-webdriver"
