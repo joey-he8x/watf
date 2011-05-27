@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'irb/completion'
 Dir["lib/module/**/*"].each {|file| require file}
 require 'features/support/db'
 require 'features/pages/base_page'

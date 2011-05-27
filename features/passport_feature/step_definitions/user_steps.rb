@@ -3,7 +3,7 @@ Given /^我已经登录$/ do
   @page = LoginPage.new @b
   @page.open
   #当 %{我以<#{@user.email}/#{@user.password}>这个身份登录}
-  当 %{我以<ttt2@my.com/hhhhaaaa>这个身份登录}
+  当 %{我以<qa@yihaodian.com/111111>这个身份登录}
   那么 %{我应该成功登录网站}
 end
 

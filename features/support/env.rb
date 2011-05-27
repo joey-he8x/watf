@@ -3,6 +3,7 @@ require 'cucumber/formatter/unicode'
 require 'yaml'
 require "#{File.dirname(__FILE__)}/site"
 site=YAML.load_file 'features/pages/site.yaml'
+prods=YAML.load_file 'features/fixtures/products.yaml'
 require "rubygems"
 require "watir-webdriver"
 require "watir-webdriver/wait"
@@ -10,7 +11,7 @@ b = Watir::Browser.new :firefox
 
 #capabilities = Selenium::WebDriver::Remote::Capabilities.htmlunit(:javascript_enabled => true)
 #b = Watir::Browser.new(:remote, :url => "http://192.168.145.1:4444/wd/hub", :desired_capabilities => :htmlunit)
-#b = Watir::Browser.new(:remote, :url => "http://192.168.145.1:4444/wd/hub", :desired_capabilities => :firefox)
+#b = Watir::Browser.new(:remote, :url => "http://192.168.16.186:4444/wd/hub", :desired_capabilities => :firefox)
 
 
 at_exit do
@@ -20,6 +21,7 @@ end
 Before do
   @b = b
   @site = site
+  @prods = prods
   #@b.cookie.all.delete
 end
 
@@ -28,5 +30,9 @@ After do |scenario|
   # The +scenario+ argument is optional, but
   # if you use it, you can inspect status with
   # the #failed?, #passed? and #exception methods.
+  puts b.url
+  if scenario.failed?
+    b.driver.save_screenshot("./screenshots/#{scenario.name}.png")
+  end
 
 end
