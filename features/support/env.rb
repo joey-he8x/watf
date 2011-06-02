@@ -3,7 +3,12 @@ require 'cucumber/formatter/unicode'
 require 'yaml'
 require "#{File.dirname(__FILE__)}/site"
 site=YAML.load_file 'features/pages/site.yaml'
-prods=YAML.load_file 'features/fixtures/products.yaml'
+ENV['env']= ENV['env'] || 'prod'
+if ENV['env'].downcase == 'prod'
+  prods=YAML.load_file 'features/fixtures/products_prod.yaml'
+else
+  prods=YAML.load_file 'features/fixtures/products_test.yaml'
+end
 require "rubygems"
 require "watir-webdriver"
 require "watir-webdriver/wait"
