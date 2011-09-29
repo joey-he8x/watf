@@ -19,6 +19,9 @@ end
 
 Then /^应该提示<(.+)>$/ do |msg|
   rs = @page.include? msg
-  rs.should be
+  rs.should be_true
 end
 
+Then /^I debug$/ do
+  debugger
+end

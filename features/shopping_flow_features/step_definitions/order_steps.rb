@@ -50,8 +50,11 @@ end
 When /^我点击结算订单$/ do
   @page = CartPage.new @b
   @page.open
-  @page.skip_activities
   @page.next_step
+  sleep 1
+  @page.skip_activities
+  @page = Pages::CheckoutPage.new @b
+  @page.wait_page_present
 end
 
 When /^选择默认的收货地址$/ do
@@ -72,6 +75,8 @@ end
 
 Then /^应该提示下单成功$/ do
   @page.is_success?
+  ENV['order_code'] = @page.order_code_link.text
+  ENV['order_amount'] = @page.order_amount_text.text
 end
 
 Then /^数据库中生成正确的订单$/ do
@@ -88,12 +93,12 @@ Then /^数据库中生成正确的订单$/ do
   end
 end
 
-When /^我取消最近的订单$/ do
+When /^我取消刚才的订单$/ do
   @page = MyOrderPage.new @b
   @page.open
-  @page.cancel_recent_order
+  @page.cancel_order ENV['order_code']
 end
 
 Then /^最近的订单取消成功$/ do
-  @page.is_recent_order_canceled?.should be_true
+  #@page.is_recent_order_canceled?.should be_true
 end

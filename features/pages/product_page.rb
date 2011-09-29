@@ -31,6 +31,7 @@ module Pages
 
     def add_to_cart pid,amount
       open pid
+      buy_btn.wait_until_present
       if is_serial?
         ser_amount_input.set amount
         buy_btn.click
@@ -38,7 +39,6 @@ module Pages
         amount_input.set amount
         buy_btn.click
       end
-      validate_province_btn.click if validate_province_btn.exists? and validate_province_btn.visible?
 
     end
 

@@ -1,6 +1,6 @@
 module Pages
   class BasePage
-    attr_accessor :name,:url,:browser
+    attr_accessor :name,:url,:browser,:elements
 
     def initialize browser
       @b = browser
@@ -9,6 +9,14 @@ module Pages
     def method_missing(sym, *args, &block)
       @b.send sym, *args, &block
     end
+
+#Elements
+    def val_province_btn
+      @b.link(:id => 'currentProvinceName')
+    end
+
+
+#Actions
 
     def is_login?
       @b.span(:id =>"logout").exists? and @b.span(:id =>"logout").visible? 
@@ -23,8 +31,14 @@ module Pages
       @b.text.include? msg
     end
 
-    def check 
+    def selfcheck 
       flag=true
+      @elements.each do |e|
+        if !e.exists? then
+          flag=false
+          puts e.inspect
+        end
+      end
       flag
     end
 
@@ -40,8 +54,6 @@ module Pages
       @b.div(:id,"currProvince").text
     end
 
-    def validate_province_btn
-      @b.link(:id => 'validate')
-    end
+
   end
 end

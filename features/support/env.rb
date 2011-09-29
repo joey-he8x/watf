@@ -10,6 +10,7 @@ else
   prods=YAML.load_file 'features/fixtures/products_test.yaml'
 end
 require "rubygems"
+require 'ruby-debug'
 require "watir-webdriver"
 require "watir-webdriver/wait"
 b = Watir::Browser.new :firefox
@@ -27,6 +28,9 @@ Before do
   @b = b
   @site = site
   @prods = prods
+  p = Pages::HomePage.new @b
+  p.open
+  p.val_province_btn.click if p.val_province_btn.exists? && p.val_province_btn.visible?
   #@b.cookie.all.delete
 end
 

@@ -3,7 +3,7 @@ Given /^我已经登录$/ do
   @page = LoginPage.new @b
   @page.open
   #当 %{我以<#{@user.email}/#{@user.password}>这个身份登录}
-  当 %{我以<qa@yihaodian.com/111111>这个身份登录}
+  当 %{我以<qa123@yihaodian.com/111111>这个身份登录}
   那么 %{我应该成功登录网站}
 end
 
@@ -23,7 +23,6 @@ end
 When /^我以<(.+)\/(.+)>这个身份登录$/ do |username,password|
   @page ||= LoginPage.new @b
   @page.login username,password
-  @page
 end
 
 Then /^我应该成功登录/ do 
@@ -32,4 +31,10 @@ end
 
 Then /^我应该登出网站$/ do
   @page.is_login?.should be_false
+end
+
+Then /^登录页面提示<(.+)>$/ do |msg|
+  rs = @page.account_desc_text.text.include? msg
+  rs2 = @page.pwd_desc_text.text.include? msg
+  (rs ||rs2).should be_true
 end
