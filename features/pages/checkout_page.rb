@@ -12,7 +12,7 @@ module Pages
 
 ###  elements
     def info_body_div
-      @b.div(:id => "head_info_check")
+      @b.div(:id => "wrapper")
     end
     
     def confirm_receiver_btn

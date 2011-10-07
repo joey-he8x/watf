@@ -13,7 +13,6 @@ end
 
 Then /^我应该在?(?:返回)?<(.+)>$/ do |pagename|
   @page = Object.const_get(@site.get_page(pagename)).new(@b)
-  @page.check.should be_true
 end
 
 
