@@ -54,7 +54,7 @@ When /^我点击结算订单$/ do
   sleep 1
   @page.skip_activities
   @page = Pages::CheckoutPage.new @b
-  @page.wait_page_present
+  @page.wait_until_present
 end
 
 When /^选择默认的收货地址$/ do
@@ -96,6 +96,7 @@ end
 When /^我取消刚才的订单$/ do
   @page = MyOrderPage.new @b
   @page.open
+  @page.wait_until_present
   @page.cancel_order ENV['order_code']
 end
 

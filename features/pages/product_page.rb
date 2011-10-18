@@ -12,7 +12,11 @@ module Pages
     end
 
     def buy_btn
-      @b.button(:class => "input_shopcart")
+      @b.button(:id => "doPurchaseBtn")
+    end
+
+    def ser_buy_btn
+      @b.button(:id => "seriesCartButton")
     end
 
     def ser_amount_input
@@ -34,7 +38,7 @@ module Pages
       buy_btn.wait_until_present
       if is_serial?
         ser_amount_input.set amount
-        buy_btn.click
+        ser_buy_btn.click
       else
         amount_input.set amount
         buy_btn.click

@@ -55,6 +55,10 @@ module Pages
       @b.radio(:id,"74")
     end
 
+    def bank_confirm_btn
+      @b.button(:xpath => "//div[@id='tableBankList']/button")
+    end
+
     def order_amount_text
       @b.span(:class => "red blod",:text => /￥/)
     end
@@ -80,7 +84,7 @@ module Pages
     end
 
     def select_default_receiver
-      @b.radio(:name => "receiverAddress",:index => 1).click
+      @b.radio(:name => "receiverAddress",:index => 0).click
       confirm_receiver_btn.click
     end
     
@@ -90,22 +94,27 @@ module Pages
 
     def select_payment payment,bank
       #puts payment +'|'+ bank
+      skipflag=false
       case payment
       when "货到付款": pay_by_cash_radio.when_present.click
       when "货到刷卡": pay_by_card_radio.when_present.click
       when "网上支付":
-        pay_by_online_radio.when_present.click
-        #case bank
-        #when "招商银行":
-        #  cmb_radio.when_present.click
-        #end
+        if not pay_by_online_radio.set?
+          pay_by_online_radio.when_present.click
+          case bank
+          when "招商银行":
+            cmb_radio.when_present.click
+          end
+          bank_confirm_btn.click
+          skipflag=true
+        end
       when "银行转帐": 
         pay_by_bank_radio.when_present.click
       when "邮局汇款":
         pay_by_post.when_present.click
       else puts "pending"
       end
-      confirm_payment_btn.when_present.click
+      confirm_payment_btn.when_present.click if skipflag==false
     end
 
     def submit_order
@@ -117,7 +126,7 @@ module Pages
       msg.exists? && msg.visible?
     end
 
-    def wait_page_present
+    def wait_until_present
       info_body_div.wait_until_present
     end
 

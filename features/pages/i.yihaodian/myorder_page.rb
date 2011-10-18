@@ -16,6 +16,9 @@ module Pages
     end
 
 #Actions
+    def wait_until_present
+      @b.div(:class =>"orderlist").wait_until_present
+    end
     def confirm_cancel
       cancel_reason_select.select_value '1520_5980'
       cancel_reason_ok_btn.click

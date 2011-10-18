@@ -13,11 +13,11 @@ require "rubygems"
 require 'ruby-debug'
 require "watir-webdriver"
 require "watir-webdriver/wait"
-b = Watir::Browser.new :firefox
+#b = Watir::Browser.new :firefox
 
 #capabilities = Selenium::WebDriver::Remote::Capabilities.htmlunit(:javascript_enabled => true)
 #b = Watir::Browser.new(:remote, :url => "http://192.168.145.1:4444/wd/hub", :desired_capabilities => :htmlunit)
-#b = Watir::Browser.new(:remote, :url => "http://192.168.8.212:4444/wd/hub", :desired_capabilities => :firefox)
+b = Watir::Browser.new(:remote, :url => "http://192.168.8.212:4444/wd/hub", :desired_capabilities => :firefox)
 
 
 at_exit do
