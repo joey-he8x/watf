@@ -15,6 +15,16 @@ module Pages
       @b.link(:id => 'currentProvinceName')
     end
 
+    def  area_btn
+      @b.link(:xpath =>"//div[@id='index_header']/div[2]/div[1]/a")
+    end
+   
+   
+
+   
+   def check_area 
+   
+   end
 
 #Actions
 
@@ -41,6 +51,10 @@ module Pages
       end
       flag
     end
+    
+    def wait_until_present
+    
+    end
 
     def open
       @b.goto @url
@@ -54,6 +68,11 @@ module Pages
       @b.div(:id,"currProvince").text
     end
 
+   def select_area are
+     area_btn.click
+     area1=@b.link(:text => are)
+     area1.click
+   end
 
   end
 end

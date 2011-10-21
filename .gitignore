@@ -1,7 +1,8 @@
 /report.html
-screenshots
-lib/webspec/jar/*
-lib/webspec/autoit/*
+screenshots/*
+lib/webspec/jar/
+lib/webspec/autoit/
 lib/ojdbc14.jar
 *.swp
 *.swo
+.svn/
