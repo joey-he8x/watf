@@ -2,7 +2,7 @@ require 'cucumber/formatter/unicode'
 
 require 'yaml'
 require "#{File.dirname(__FILE__)}/site"
-site=YAML.load_file 'features/pages/site.yaml'
+site=YAML.load_file 'features/_pages/site.yaml'
 ENV['env']= ENV['env'] || 'prod'
 if ENV['env'].downcase == 'prod'
   prods=YAML.load_file 'features/fixtures/products_prod.yaml'

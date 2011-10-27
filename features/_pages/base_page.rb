@@ -18,13 +18,45 @@ module Pages
     def  area_btn
       @b.link(:xpath =>"//div[@id='index_header']/div[2]/div[1]/a")
     end
-   
-   
+    
+     ###  ËÑË÷Ò³ÔªËØ
+        def search_name_input
+      @b.text_field(:id =>'keyword')
+    end
 
-   
-   def check_area 
-   
+    
+    def search_btn
+      @b.image(:src,/btn_search.jpg/)
+    end
+    
+    def search_hot_link
+      div=@b.link(:xpath=>"//div[@id='hotKeywordsShow']//a",:index=>0)
+    end
+     
+     def search_hot_link_page1
+      @b.div(:id => "bottomBrand")
+    end 
+     
+     def buy_button
+      @b.div(:id =>'buyButton_950028')
+     end 
+     
+    def account_desc_text
+      @b.span(:id =>'user_name')
+    end
+  
+  #############ÇĞ»»Ê¡·İ
+    def  area_btn
+    @b.link(:xpath =>"//div[@id='index_header']/div[2]/div[1]/a")
+    end
+    
+    def  src_img
+     div=b.link(:xpath =>"div[id('first_banner_slider')]/div/div[1]/a/img")
+     img=div.src()
+     #puts img
    end
+   
+  
 
 #Actions
 
@@ -73,6 +105,22 @@ module Pages
      area1=@b.link(:text => are)
      area1.click
    end
+
+   ####ËÑË÷Ò³
+  def search keyword
+      search_name_input.set keyword
+      search_btn.click
+    
+    end
+    
+    
+    def click_search_hot
+      #div=@b.link(:xpath=>"div([@id='hotKeywordsShow']",:index=>0)
+      search_hot_link.click
+    end
+    
+  
+    
 
   end
 end
