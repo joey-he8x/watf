@@ -27,6 +27,27 @@ module Pages
       @b.span(:id => "pwd_desc")
     end
 
+   ## 联合登陆
+   def sinalogin_button
+    @b.link(:class =>'a_sina')
+   end
+   
+   def wangyilogin_button
+    @b.link(:class =>'a_163')
+   end
+   
+   def kaixinwang_button
+     @b.link(:class =>'a_kaixin')
+   end
+   
+   def msn_button
+     @b.link(:class =>'a_msn')
+   end
+
+   def renrenwang_button
+      @b.link(:class=>'a_renren')
+   end
+
 
     def login username,password
       name_input.set username

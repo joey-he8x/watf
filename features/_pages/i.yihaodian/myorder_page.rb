@@ -4,6 +4,7 @@ module Pages
       super b
       @name = "订单列表页"
       @url = "www.yihaodian.com/usermanager/order/myOrder.do"
+      @elements = [check_frame_order,check_select_order]
     end
 
 #Elements
@@ -14,7 +15,15 @@ module Pages
     def cancel_reason_ok_btn
       @b.button(:id => "confirmItemOrder")
     end
-
+    
+    def check_select_order
+      @b.div(:xpath =>"//div[id('myOrderList')]//div[@class='or_info']")
+    end
+   
+    def check_frame_order
+       @b.div(:id =>'myYihaodianLeftMenu')
+    end
+    
 #Actions
     def wait_until_present
       @b.div(:class =>"orderlist").wait_until_present
@@ -39,6 +48,9 @@ module Pages
 #      !btn.exists?
 # 
 #    end
+     def check
+        selfcheck
+      end
 
   end
 end

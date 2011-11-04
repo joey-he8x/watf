@@ -4,55 +4,37 @@ module Pages
       super b
       @name ="搜索页"
       @url ="http://search.yihaodian.com/s/c0-k"
-      #@element =[search_name_input,search_btn,search_hot_link,search_hot_link]
+      #@element =[search_name_input,search_btn,search_hot_link,search_hot_link,buy_button]
     end
 
-   
+     def buy_button
+      #@b.div(:id =>'buyButton_950028')
+     end 
     
+ 
     
+    def product_click name
+      @b.link(:text,/#{name}/).click
+    end
+    
+    def is_check? name
+      @b.link(:text,/#{name}/).exists?
+    end
+
     def check_search?  title
-        #div=@b.link(:title,/海飞丝丝源复活组合洗发露530ml/)
-      div=@b.link(:title,/#{title}/)
+        div=@b.link(:title,/#{title}/)
         div.exists?
-    end
-    
-    #热门搜索
-    def check_hot_search?
-        search_hot_link.wait_until_present
-        search_hot_link.exists?
-    end
-    
-
-    
-    def check_hot_search_page?
-     
-      search_hot_link.wait_until_present
-      search_hot_link_page1.exists?
-    end
-    
-    
-    
-    
-    
-    #产品列别说明
-     def product_select
-     
-      div=@b.link(:xpath=>"//div[@id='propertiescon']//a",:index=>0)
-    end
-    
-     def product_click
-      product_select.click
-    end
-    
+    end   
    # 搜索页价格
    
-     def select_reflesh?
-    div = buy_button
-     div.wait_until_present
-      div.exists?
+    def select_reflesh?
+      @b.div(:id =>'buyButton_950028').exists?
     end
    
-   
+    def selfcheck
+      super.selfcheck
+      bottom_brand_div.wait_until_present
+    end
   
   end
 end

@@ -20,7 +20,7 @@ module Pages
     end
     
      ###  ËÑË÷Ò³ÔªËØ
-        def search_name_input
+    def search_keyword_input
       @b.text_field(:id =>'keyword')
     end
 
@@ -33,13 +33,9 @@ module Pages
       div=@b.link(:xpath=>"//div[@id='hotKeywordsShow']//a",:index=>0)
     end
      
-     def search_hot_link_page1
+    def bottom_brand_div
       @b.div(:id => "bottomBrand")
     end 
-     
-     def buy_button
-      @b.div(:id =>'buyButton_950028')
-     end 
      
     def account_desc_text
       @b.span(:id =>'user_name')
@@ -50,13 +46,12 @@ module Pages
     @b.link(:xpath =>"//div[@id='index_header']/div[2]/div[1]/a")
     end
     
-    def  src_img
-     div=b.link(:xpath =>"div[id('first_banner_slider')]/div/div[1]/a/img")
-     img=div.src()
-     #puts img
-   end
+  #def check_src_img? img1,img2
+        ##div=b.link(:xpath =>"div[id('first_banner_slider')]/div/div[1]/a/img")
+       # img1==img2
+   #end
    
-  
+   
 
 #Actions
 
@@ -65,7 +60,6 @@ module Pages
     end
 
     def logout
-      #@browser.jquery("#logout a").click if is_login?
       @b.goto "www.yihaodian.com/passport/logoff.do"
     end
 
@@ -78,7 +72,7 @@ module Pages
       @elements.each do |e|
         if !e.exists? then
           flag=false
-          puts e.inspect
+          #puts e.inspect
         end
       end
       flag
@@ -101,21 +95,20 @@ module Pages
     end
 
    def select_area are
+   area_btn.wait_until_present
      area_btn.click
      area1=@b.link(:text => are)
      area1.click
    end
 
    ####ËÑË÷Ò³
-  def search keyword
-      search_name_input.set keyword
+    def search keyword
+      search_keyword_input.set keyword
       search_btn.click
-    
     end
     
     
     def click_search_hot
-      #div=@b.link(:xpath=>"div([@id='hotKeywordsShow']",:index=>0)
       search_hot_link.click
     end
     

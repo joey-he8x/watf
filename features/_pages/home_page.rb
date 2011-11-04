@@ -16,24 +16,22 @@ module Pages
    #Actions
    
      #####切换地区
-   def  click_area
-     area_btn.wait_until_present
-     area_btn.click
-    end
+ ##  def  click_area
+   #  area_btn.wait_until_present
+    # area_btn.click
+    #end
     
-   def select_area are
-     area1=@b.link(:text => are)
-     area1.click
-   end
+   #def select_area are
+    # area1=@b.link(:text => are)
     
-   def select_area are
-     area1=@b.link(:text => are)
-     area1.click
-   end
+    # area1.click
+   #end
    
-   def check_src_img?
-        div=b.link(:xpath =>"div[id('first_banner_slider')]/div/div[1]/a/img")
-   end
+   def check_src_img? img1,img2
+        #div=b.link(:xpath =>"div[id('first_banner_slider')]/div/div[1]/a/img")
+        img==img2 
+       
+ end
   
    
   end
